@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f7ebe8;
+            color: #5a2a2a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: #fcf8f6;
+            border: 2px solid #8b3a3a;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        /* Screen Management */
+        .screen {
+            display: none;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Typography & Elements */
+        h1 {
+            font-size: 2.8rem;
+            color: #7a1c1c;
+            margin-bottom: 10px;
+            font-family: 'Georgia', serif;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #7a1c1c;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            margin: 8px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #a82e2e;
+            transform: translateY(-2px);
+        }
+
+        .btn-back {
+            background-color: #8b5a5a;
+            margin-top: 20px;
+        }
+
+        /* Cake Visual */
+        .cake-img {
+            width: 180px;
+            margin: 20px 0;
+        }
+
+        /* Menu Icons Grid */
+        .menu-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .menu-card {
+            background-color: #fff;
+            border: 1.5px solid #a85d5d;
+            border-radius: 12px;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .menu-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .menu-card span {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .menu-card p {
+            font-size: 0.85rem;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        /* Photos Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Message Box */
+        .message-text {
+            text-align: left;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px dashed #a85d5d;
+            max-height: 250px;
+            overflow-y: auto;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Video Container */
+        .video-container {
+            margin-top: 15px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div id="screen-home" class="screen active">
+        <h1>Happy Birthday</h1>
+        <p>do you want to see your gift?</p>
+        <div style="font-size: 80px;">🎂</div>
+        <div>
+            <button class="btn" onclick="showScreen('screen-main')">yes ! ! !</button>
+            <button class="btn" onclick="showScreen('screen-no')">nooo ! ! !</button>
+        </div>
+    </div>
+
+    <div id="screen-no" class="screen">
+        <h2 style="margin-top: 40px; color: #7a1c1c;">I promise you'll like it :(</h2>
+        <button class="btn btn-back" onclick="showScreen('screen-home')">try again</button>
+    </div>
+
+    <div id="screen-main" class="screen">
+        <h1>Happy birthday sayangku</h1>
+        <div class="menu-grid">
+            <div class="menu-card" onclick="showScreen('screen-memories')">
+                <span>🖼️</span>
+                <p>Memories</p>
+            </div>
+            <div class="menu-card" onclick="showScreen('screen-about')">
+                <span>🌸</span>
+                <p>About You</p>
+            </div>
+            <div class="menu-card" onclick="showScreen('screen-song')">
+                <span>📻</span>
+                <p>Song For You</p>
+            </div>
+            <div class="menu-card" onclick="showScreen('screen-message')">
+                <span>💌</span>
+                <p>Message</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="screen-memories" class="screen">
+        <h2>Memories</h2>
+        <div class="gallery">
+            <img src="fotbar 1.jpeg" alt="Foto 1">
+            <img src="fotbar 2.jpeg" alt="Foto 2">
+            <img src="fotbar 3.jpeg" alt="Foto 3">
+            <img src="fotbar 4.jpeg" alt="Foto 4">
+        </div>
+        <button class="btn btn-back" onclick="showScreen('screen-main')">back</button>
+    </div>
+
+    <div id="screen-about" class="screen">
+        <h2>About You</h2>
+        <p>✨ Sifat dan hal manis tentang kamu ✨</p>
+        <ul style="list-style: none; text-align: left; margin: 20px auto; max-width: 400px; line-height: 2;">
+            <li>❤️ Kamu suka berbuat baik, suka menolong juga</li>
+            <li>❤️ Tengil banget, ngeyell jugaa kalo dibilagin</li>
+            <li>❤️ Kamu juga ga gampang nyerah, tapi nyebelin orangnya</li>
+            <li>❤️ Terima kasih sudah selalu ada!</li>
+        </ul>
+        <button class="btn btn-back" onclick="showScreen('screen-main')">back</button>
+    </div>
+
+    <div id="screen-song" class="screen">
+        <h2>This song reminds me of you ^_^</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/HM3DeT4UXqM?si=sYJe6dmSDA2lmZzT" allowfullscreen></iframe>
+        </div>
+        <button class="btn btn-back" onclick="showScreen('screen-main')">back</button>
+    </div>
+
+    <div id="screen-message" class="screen">
+        <h2>My message to youuu</h2>
+        <div class="message-text">
+            Happy birthday my loveee !! <br><br>
+            in 6 august 2009 was born who would become a part of my life story, aku senang rasanay tau kalau aku bisa di pertemukan sama laki" yang baik sekali kaya kamu,
+            aku ga pernah bisa menduga bahwa kamu bisa sama aku, aku harap kamu tetep sama aku terus ya!! maaf ya sayang kalau selama ini masih belum bisa jadi yang terbaik buat kamu
+            but if u know, demi tuhan aku berusaha semampu aku buat jadi yang terbaik, terimakasih banyak ya sayang sudah lahir untuk aku, maaf ya aku gabisa bikin kata kata
+            tapi aku harap kamu bisa suka sama small gift dari aku, i love u soooooooooo much sayang, i love u more than myself.
+            HAPPY SWEET SEVENTEEN SAYANGKUUUU 
+        </div>
+        <button class="btn btn-back" onclick="showScreen('screen-main')">back</button>
+    </div>
+
+</div>
+
+<script>
+    function showScreen(screenId) {
+        const screens = document.querySelectorAll('.screen');
+        screens.forEach(screen => screen.classList.remove('active'));
+        document.getElementById(screenId).classList.add('active');
+    }
+</script>
+
+</body>
+</html>
